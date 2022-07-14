@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Herramientas Dashboards</title>
+<meta name="author" content="Diego Rodriguez"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="/home/diego/.emacs.d/.local/straight/build-27.2/revealjs/dist/reveal.css"/>
+
+<link rel="stylesheet" href="/home/diego/.emacs.d/.local/straight/build-27.2/revealjs/dist/theme/black.css" id="theme"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1 class="title">Herramientas Dashboards</h1><h2 class="author">Diego Rodriguez</h2><p class="date">Created: 2022-07-08 Fri 17:30</p>
+</section>
+<section id="table-of-contents-section">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#/slide-1">1. Dashboards</a></li>
+<li><a href="#/slide-2">2. Tipos de herramientas para dashboards</a></li>
+<li><a href="#/slide-3">3. Cómo pasamos de desarrollo local a dashborads disponibles en la web ?</a></li>
+<li><a href="#/slide-4">4. Referencias</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<section id="slide-1">
+<h2 id="1"><span class="section-number-2">1.</span> Dashboards</h2>
+<p>
+Un dashboard es una colección de visualizaciones que intentan comunicar la mayor cantidad de información en una vista densa y concisa, por lo general una sola página web.
+</p>
+
+
+<div id="org4539a14" class="figure">
+<p><img src="file:///home/diego/Dropbox/org/.attach/1b/3becb0-ec3b-46cd-af4d-8fcc903e81c7/_20220627_142406screenshot.png" alt="_20220627_142406screenshot.png" width="450px" />
+</p>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-2">
+<h2 id="2"><span class="section-number-2">2.</span> Tipos de herramientas para dashboards</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+</section>
+<section id="slide-org83f6f25">
+<h3 id="org83f6f25">Software de oficina</h3>
+<ul>
+<li><p>
+Excel, Google Suite, etc
+</p>
+
+<p>
+Se pueden graficar y crear dashboards con los mismos datos de las tablas
+</p></li>
+
+</ul>
+
+
+<div id="org44662ed" class="figure">
+<p><img src="file:///home/diego/Dropbox/org/.attach/47/0009b5-9b71-4482-a191-d71fd48e410d/_20220627_142610screenshot.png" alt="_20220627_142610screenshot.png" width="450px" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-orgd008dbc">
+<h3 id="orgd008dbc">Data Analytics y herramientas de reportes</h3>
+<ul>
+<li>Superset
+<ul>
+<li>Herramienta opensource para explorar y graficar datos</li>
+<li>Integración con varias fuentes de datos (PSQL, MySQL, BigQuery, etc)</li>
+<li>Permite crear una &ldquo;página web&rdquo; con las visualizaciones</li>
+
+</ul></li>
+
+</ul>
+
+<div id="org74a16d6" class="figure">
+<p><img src="file:///home/diego/Dropbox/org/.attach/7a/4f37c9-e552-4f98-82c6-cdf155ae488d/_20220627_143944screenshot.png" alt="_20220627_143944screenshot.png" width="450px" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-org3552aa6">
+<h3 id="org3552aa6">Data Analytics en código</h3>
+<ul>
+<li>Manipulación y generación de gráficos en algún lenguaje de programación
+<ul>
+<li>Python, Javascript</li>
+
+</ul></li>
+
+</ul>
+
+
+<div id="orgce9868f" class="figure">
+<p><img src="file:///home/diego/Dropbox/org/.attach/0e/8aa422-7318-4184-b511-0e143e1fad6e/_20220627_155042screenshot.png" alt="_20220627_155042screenshot.png" width="500px" />
+</p>
+</div>
+</section>
+<section>
+<ul>
+<li>Ventajas: todo lo que podamos hacer en código</li>
+<li>Desventajas: saber programar, acceso y manejo de datos a más bajo nivel (según librerías)</li>
+<li>Ejemplos de librerías en python: Matplotlib, Plotly, Holoviews</li>
+
+</ul>
+
+</section>
+<section id="slide-orgf3ab641">
+<h3 id="orgf3ab641">Web</h3>
+<ul>
+<li>Casi todos los dashboards apuntan a ser visualizados en web</li>
+<li>Todo en web se escribe en javascript, que es el lenguaje que interpretan los navegadores</li>
+<li><p>
+Hay miles de herramientas para crear gráficos en JS
+</p>
+</section>
+<section></li>
+<li>Ventajas: es código, se integra directamente con navegador.
+Aunque por lo general la manipulación dura de los datos no se hace en web</li>
+<li>Desventajas: javascript + html + css, conceptos de diseño</li>
+
+</ul>
+
+</section>
+<section id="slide-orgd0f731b">
+<h3 id="orgd0f731b">Código + librerías de dashboards = Web pero más fácil</h3>
+<ul>
+<li>Para web tenemos dos opciones
+<ul>
+<li>Usamos herramientas web directamente (js, html, css)</li>
+<li>Usamos herramientas de alto nivel que generan js, html y css</li>
+
+</ul></li>
+<li>Nosotros vamos a trabajar principalmente en esta categoría
+<ul>
+<li>Herramientas: <b>Dash</b>, Panel</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-3">
+<h2 id="3"><span class="section-number-2">3.</span> Cómo pasamos de desarrollo local a dashborads disponibles en la web ?</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+</section>
+<section id="slide-orgcbb921f">
+<h3 id="orgcbb921f">Desarrollo de aplicaciones web</h3>
+<p>
+El desarrollo web tiene por lo general 3 elementos: Javascript, HTML y CSS
+</p>
+<ul>
+<li>Escribimos código en Javascript</li>
+<li>Escribimos etiquetas con elementos visibles en HTML</li>
+<li>Código javascript se &ldquo;importa&rdquo; en archivos HTML</li>
+
+</ul>
+</section>
+<section>
+<ul>
+<li>Javascript puede interactuar con los elementos HTML o ejecutar código que no tiene efectos visibles</li>
+<li>Podemos darle estilos a los elementos HTML mediante CSS</li>
+<li>Al abrir un archivo HTML en nuestro navegador, podremos ver los elementos visuales y el navegador ejecutará el código Javascript que agreguemos</li>
+
+</ul>
+</section>
+<section id="slide-org9646862">
+<h3 id="org9646862">Construcción y despliegue de aplicaciones web</h3>
+<ul>
+<li>Luego de haber hecho al menos algo de desarrollo viene la construcción (build)</li>
+<li>Se usan herramientas de build (webpack, vite, etc)
+<ul>
+<li>Estas empaquetan el código html, css y javascript en una versión minificada</li>
+<li>A esto también se le llama generación de archivos estáticos</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section>
+<ul>
+<li>Un <b>servidor</b> web (apache, nginx, etc) puede leer estos archivos estáticos y enviarlos a un <b>cliente</b></li>
+<li>El cliente, en este caso un navegador recibirá estos archivos y los mostrará en pantalla</li>
+
+</ul>
+
+<div id="orgc4dd160" class="figure">
+<p><img src="file:///home/diego/Dropbox/org/.attach/d6/490cda-fa10-4ff6-bfd0-562cefcd1a79/_20220627_151553screenshot.png" alt="_20220627_151553screenshot.png" width="450px" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-org477998f">
+<h4 id="org477998f">En un servidor</h4>
+<ul>
+<li>Debemos contar con un servidor que pueda leer los archivos estáticos y enviarlos a los clientes</li>
+<li>El servidor debe estar constantemente escuchando peticiones</li>
+
+</ul>
+</section>
+<section id="slide-org3646507">
+<h4 id="org3646507">Serverless</h4>
+<ul>
+<li>Recientemente se ha hecho popular la infraestructura &ldquo;serverless&rdquo;</li>
+<li>Abstrae el concepto de servidor a servicios que se ejecutan &ldquo;on-demand&rdquo;</li>
+<li>Ej: Storage de AWS (S3) permite servir archivos estáticos</li>
+
+</ul>
+</section>
+<section id="slide-orgde97bc5">
+<h3 id="orgde97bc5">Caso particular: Dash</h3>
+<ul>
+<li>Dash usa por debajo una herramienta llamada Flask
+<ul>
+<li>Flask es un framework para crear aplicaciones Web</li>
+
+</ul></li>
+<li>Dash creará una página web completa con HTML, Javascript y CSS mientras escribimos código en python y creamos gráficos con plotly</li>
+
+</ul>
+</section>
+<section id="slide-org0298015">
+<h4 id="org0298015">Servidor web de desarrollo</h4>
+<ul>
+<li>Flask tiene un servidor web integrado</li>
+<li>Al ejecutar nuestra aplicación, ésta quedará escuchando las peticiones de clientes y enviará los archivos estáticos</li>
+<li>Este servidor es solo para desarrollo, pues no es capaz de recibir demasiadas peticiones
+<ul>
+<li>En un entorno real, se espera que un buen servidor reciba peticiones simultáneas, por lo que debe tener múltiples procesos o hilos para capturar y dar respuesta a esas peticiones</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-orge2c3a73">
+<h4 id="orge2c3a73">Servidor web para entornos productivos</h4>
+<ul>
+<li>Existen herramientas para ejecutar nuestra aplicación Dash (Flask) con servidores listos para producción
+<ul>
+<li>Ej: Gunicorn, Werkzeug</li>
+
+</ul></li>
+<li>Al ejecutar Gunicorn, éste se conecta con el código de nuestra app y recibirá las peticiones</li>
+
+</ul>
+</section>
+<section id="slide-org0eeac74">
+<h4 id="org0eeac74">Containers y serverless</h4>
+<ul>
+<li>Podemos enpaquetar nuestra app usando containers
+<ul>
+<li>Ej: Docker</li>
+
+</ul></li>
+<li>El container tendrá una imagen que tiene todo lo necesario para ejecutar nuestra aplicación
+<ul>
+<li>Desde los paquetes necesarios del sistema operativo hasta python y luego nuestra aplicación misma</li>
+
+</ul></li>
+<li>Existen varios servicios serverless para la ejecución de containers
+<ul>
+<li>Kubernetes, Cloud container services, Docker Swarm</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-org0f8d2ba">
+<h3 id="org0f8d2ba">Otros elementos para aplicaciones en producción</h3>
+<ul>
+<li>DNS</li>
+<li>Load balancers</li>
+<li>Proxies</li>
+
+</ul>
+
+<p>
+Y además debemos considerar: almacenamiento, backups, seguridad, monitoreo, escalabilidad, etc.
+</p>
+
+<p>
+No basta con ejecutar nuestro servidor de desarrollo y exponerlo a internet.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-4">
+<h2 id="4"><span class="section-number-2">4.</span> Referencias</h2>
+</section>
+</section>
+</div>
+</div>
+<script src="/home/diego/.emacs.d/.local/straight/build-27.2/revealjs/dist/reveal.js"></script>
+<script src="/home/diego/.emacs.d/.local/straight/build-27.2/revealjs/plugin/markdown/markdown.js"></script>
+<script src="/home/diego/.emacs.d/.local/straight/build-27.2/revealjs/plugin/notes/notes.js"></script>
+<script src="/home/diego/.emacs.d/.local/straight/build-27.2/revealjs/plugin/search/search.js"></script>
+<script src="/home/diego/.emacs.d/.local/straight/build-27.2/revealjs/plugin/zoom/zoom.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+
+transition: 'convex',
+transitionSpeed: 'default',
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealNotes, RevealSearch, RevealZoom ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>

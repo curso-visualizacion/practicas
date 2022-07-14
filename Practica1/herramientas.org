@@ -1,0 +1,153 @@
+#+title: Herramientas Dashboards
+
+* Dashboards
+:PROPERTIES:
+:ID:       1b3becb0-ec3b-46cd-af4d-8fcc903e81c7
+:END:
+Un dashboard es una colección de visualizaciones que intentan comunicar la mayor cantidad de información en una vista densa y concisa, por lo general una sola página web.
+
+#+attr_html: :width 450px
+#+attr_latex: :width 450px
+[[attachment:_20220627_142406screenshot.png]]
+
+
+* Tipos de herramientas para dashboards
+** Software de oficina
+:PROPERTIES:
+:ID:       470009b5-9b71-4482-a191-d71fd48e410d
+:UNNUMBERED: notoc
+:END:
+- Excel, Google Suite, etc
+
+  Se pueden graficar y crear dashboards con los mismos datos de las tablas
+
+#+attr_html: :width 450px
+#+attr_latex: :width 450px
+ [[attachment:_20220627_142610screenshot.png]]
+
+
+** Data Analytics y herramientas de reportes
+:PROPERTIES:
+:ID:       7a4f37c9-e552-4f98-82c6-cdf155ae488d
+:UNNUMBERED: notoc
+:END:
+- Superset
+  - Herramienta opensource para explorar y graficar datos
+  - Integración con varias fuentes de datos (PSQL, MySQL, BigQuery, etc)
+  - Permite crear una "página web" con las visualizaciones
+#+attr_html: :width 450px
+#+attr_latex: :width 450px
+[[attachment:_20220627_143944screenshot.png]]
+
+
+** Data Analytics en código
+:PROPERTIES:
+:ID:       0e8aa422-7318-4184-b511-0e143e1fad6e
+:UNNUMBERED: notoc
+:END:
+- Manipulación y generación de gráficos en algún lenguaje de programación
+  - Python, Javascript
+
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[attachment:_20220627_155042screenshot.png]]
+#+REVEAL: split
+- Ventajas: todo lo que podamos hacer en código
+- Desventajas: saber programar, acceso y manejo de datos a más bajo nivel (según librerías)
+- Ejemplos de librerías en python: Matplotlib, Plotly, Holoviews
+
+** Web
+:PROPERTIES:
+:UNNUMBERED: notoc
+:END:
+- Casi todos los dashboards apuntan a ser visualizados en web
+- Todo en web se escribe en javascript, que es el lenguaje que interpretan los navegadores
+- Hay miles de herramientas para crear gráficos en JS
+  #+REVEAL: split
+- Ventajas: es código, se integra directamente con navegador.
+  Aunque por lo general la manipulación dura de los datos no se hace en web
+- Desventajas: javascript + html + css, conceptos de diseño
+
+** Código + librerías de dashboards = Web pero más fácil
+:PROPERTIES:
+:UNNUMBERED: notoc
+:END:
+- Para web tenemos dos opciones
+  - Usamos herramientas web directamente (js, html, css)
+  - Usamos herramientas de alto nivel que generan js, html y css
+- Nosotros vamos a trabajar principalmente en esta categoría
+  - Herramientas: *Dash*, Panel
+
+* Cómo pasamos de desarrollo local a dashborads disponibles en la web ?
+** Desarrollo de aplicaciones web
+:PROPERTIES:
+:UNNUMBERED: notoc
+:END:
+El desarrollo web tiene por lo general 3 elementos: Javascript, HTML y CSS
+- Escribimos código en Javascript
+- Escribimos etiquetas con elementos visibles en HTML
+- Código javascript se "importa" en archivos HTML
+#+REVEAL: split
+- Javascript puede interactuar con los elementos HTML o ejecutar código que no tiene efectos visibles
+- Podemos darle estilos a los elementos HTML mediante CSS
+- Al abrir un archivo HTML en nuestro navegador, podremos ver los elementos visuales y el navegador ejecutará el código Javascript que agreguemos
+** Construcción y despliegue de aplicaciones web
+:PROPERTIES:
+:ID:       d6490cda-fa10-4ff6-bfd0-562cefcd1a79
+:UNNUMBERED: notoc
+:END:
+- Luego de haber hecho al menos algo de desarrollo viene la construcción (build)
+- Se usan herramientas de build (webpack, vite, etc)
+  - Estas empaquetan el código html, css y javascript en una versión minificada
+  - A esto también se le llama generación de archivos estáticos
+#+REVEAL: split
+- Un *servidor* web (apache, nginx, etc) puede leer estos archivos estáticos y enviarlos a un *cliente*
+- El cliente, en este caso un navegador recibirá estos archivos y los mostrará en pantalla
+#+attr_html: :width 450px
+#+attr_latex: :width 450px
+[[attachment:_20220627_151553screenshot.png]]
+
+
+*** En un servidor
+- Debemos contar con un servidor que pueda leer los archivos estáticos y enviarlos a los clientes
+- El servidor debe estar constantemente escuchando peticiones
+*** Serverless
+- Recientemente se ha hecho popular la infraestructura "serverless"
+- Abstrae el concepto de servidor a servicios que se ejecutan "on-demand"
+- Ej: Storage de AWS (S3) permite servir archivos estáticos
+** Caso particular: Dash
+:PROPERTIES:
+:UNNUMBERED: notoc
+:END:
+- Dash usa por debajo una herramienta llamada Flask
+  - Flask es un framework para crear aplicaciones Web
+- Dash creará una página web completa con HTML, Javascript y CSS mientras escribimos código en python y creamos gráficos con plotly
+*** Servidor web de desarrollo
+- Flask tiene un servidor web integrado
+- Al ejecutar nuestra aplicación, ésta quedará escuchando las peticiones de clientes y enviará los archivos estáticos
+- Este servidor es solo para desarrollo, pues no es capaz de recibir demasiadas peticiones
+  - En un entorno real, se espera que un buen servidor reciba peticiones simultáneas, por lo que debe tener múltiples procesos o hilos para capturar y dar respuesta a esas peticiones
+*** Servidor web para entornos productivos
+- Existen herramientas para ejecutar nuestra aplicación Dash (Flask) con servidores listos para producción
+  - Ej: Gunicorn, Werkzeug
+- Al ejecutar Gunicorn, éste se conecta con el código de nuestra app y recibirá las peticiones
+*** Containers y serverless
+- Podemos enpaquetar nuestra app usando containers
+  - Ej: Docker
+- El container tendrá una imagen que tiene todo lo necesario para ejecutar nuestra aplicación
+  - Desde los paquetes necesarios del sistema operativo hasta python y luego nuestra aplicación misma
+- Existen varios servicios serverless para la ejecución de containers
+  - Kubernetes, Cloud container services, Docker Swarm
+** Otros elementos para aplicaciones en producción
+:PROPERTIES:
+:UNNUMBERED: notoc
+:END:
+- DNS
+- Load balancers
+- Proxies
+
+Y además debemos considerar: almacenamiento, backups, seguridad, monitoreo, escalabilidad, etc.
+
+No basta con ejecutar nuestro servidor de desarrollo y exponerlo a internet.
+
+* Referencias
